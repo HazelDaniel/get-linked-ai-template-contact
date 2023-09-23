@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	const navigationLinks = document.querySelectorAll('.header-link a');
 	const hamburgerIcon = document.querySelector("header").querySelector(".hamburger");
 	const headerMenu = document.querySelector("header").querySelector(".header-menu");
+	const register_link = "https://hazeldaniel.github.io/get-linked-ai-template-register/"
+	const register_button = document.querySelector(".header-cta button");
+
 	// const heroMotto = document.querySelector("section.hero").querySelector("h3");
 	const baseUri = 'https://backend.getlinked.ai/';
 	const form = document.querySelector('.contact-form');
@@ -116,6 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
 					alert("something went wrong");
         });
 			form.reset();
+    });
+	}
+
+	const handle_route_register = function () {
+		register_button.addEventListener('click', function() {
+      window.location.href = register_link;
     });
 	}
 
