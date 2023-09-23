@@ -134,5 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	handleHamburgerClick();
 	initBounce();
 	handleContactSubmit();
+	handle_route_register();
 
 });
