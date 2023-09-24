@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const formData = new FormData(form);
       const formObject = {};
 			for (const [key, value] of formData.entries()) {
-				console.log(`key : ${key} \n value : ${value}`);
+				// console.log(`key : ${key} \n value : ${value}`);
 				formObject[key] = value;
 			}
 
@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(response => response.json())
         .then(data => {
+					console.log("success");
 					handleToastRender("Form successfully submitted and will be reviewed!");
         })
         .catch(error => {
