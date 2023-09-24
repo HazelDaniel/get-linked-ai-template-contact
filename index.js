@@ -65,6 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
+	const handleRenderLoader = function() {
+
+	}
+
 	const handleHamburgerClick = function() {
 		hamburgerIcon.addEventListener('click', (_) => {
 			hamburgerIcon.classList.toggle("opened");
@@ -90,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const formData = new FormData(form);
       const formObject = {};
 			for (const [key, value] of formData.entries()) {
+				console.log(`key : ${key} \n value : ${value}`);
 				formObject[key] = value;
 			}
 
@@ -97,9 +102,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const payload = {
         "email": formObject.email,
         "phone_number": formObject.phone_number,
-        "first_name": formObject.group_name,
+        "first_name": formObject.first_name,
         "message": formObject.message,
       };
+
+
+			if (!payload["email"] ||
+				!payload["first_name"] ||
+				!payload["phone_number"] ||
+				!payload["message"]) {
+				alert("fields not correctly filled");
+				return;
+			}
 
       // Send POST request
       fetch(baseUri + 'hackathon/contact-form', {
@@ -111,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(response => response.json())
         .then(data => {
+					console.log(data);
 					//handle success
         })
         .catch(error => {
