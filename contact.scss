@@ -1,0 +1,233 @@
+@import "_functions";
+@import "_theme";
+@import "_typography";
+
+
+header {
+    border-bottom: none;
+    .logo-div {
+        @media screen and (max-width: 677px) {
+            visibility: hidden !important;
+        }
+    }
+}
+
+@mixin makeCta {
+    all: unset;
+	height: 5rem;
+	width: calc(5rem * 3.24);
+	border: none;
+	border-radius: .5rem;
+	outline: none;
+	cursor: pointer;
+	color: var(--text-color);
+	font-size: 1.8rem;
+	display: block;
+	margin: 3rem auto;
+	position: relative;
+	@media screen and (min-width: 577px) {
+		margin-left: 8.2rem;
+	}
+	background: linear-gradient(
+		to right,
+		var(--accent-color-thick) 0%,
+		var(--secondary-color) 100%
+	);
+}
+
+.nav-control {
+    display: block;
+    width: 2rem;
+    height: 2rem !important;
+    border-radius: 50%;
+    margin-top: -5rem;
+    margin-left: 5rem;
+    transform: scale(1.2) translateX(-10%);
+    background-color: var(--dark-color);
+    background: var(--secondary-color);
+    position: relative;
+    z-index: 4;
+    @media screen and (min-width: 678px) {
+        visibility: hidden !important;
+    }
+    a {
+        @include makeFullSizeBlock;
+        background-color: var(--dark-color);
+        border-radius: inherit;
+        transform: scale(1.1) translateX(-10%);
+        @include makeColFlexCenter;
+        align-items: center;
+        min-height: 2rem;
+        svg {
+            transform: translateX(-30%);
+
+        }
+    }
+    &::after {
+        @include makeAbsoluteTopLeftDiv;
+        @include makeFullSizeBlock;
+        transform: scale(1.2) translateX(-10%);
+        background: linear-gradient(to bottom, var(--accent-color-thick) , var(--secondary-color));
+        background-color: var(--accent-color-fade);
+        border-radius: 50%;
+        z-index: -1 !important;
+    }
+}
+
+.contact-form-area {
+    @include makeColFlexCenter;
+    @include makeFullWidthBlock;
+    height: max-content;
+    padding-top: 7rem;
+    margin-bottom: 0;
+
+    @media screen and (min-width: 992px) {
+        @include makeRowFlexCenter;
+        padding-top: 10rem;
+    }
+    .contact-form-left {
+        align-self: flex-start;
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
+        &>h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color-fade);
+            font-family: montserrat_regular;
+        }
+        &>p {
+            width: 15rem;
+            height: max-content;
+            &:last-of-type {
+                width: 30rem;
+            }
+        }
+        &>h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color-fade);
+        }
+        &>ul {
+            margin-left: 0;
+            @include makeRowFlexStart;
+            padding-left: 0;
+        }
+    }
+    .contact-form-right {
+        margin-left: 4rem;
+        &-title {
+            margin-bottom: 3rem;
+            @include makeColFlexStart;
+            align-items: flex-start;
+            &>h2 {
+                font-size: 2rem;
+                font-family: clash_display_regular;
+                font-weight: bolder;
+                margin: 0 auto;
+                margin-left: 0;
+                text-align: start;
+                width: 20rem;
+                height: max-content;
+                color: var(--accent-color-fade);
+                &:first-of-type {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        &-sub-title {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-family: montserrat_regular;
+            width: 30rem;
+            margin-bottom: 3rem;
+        }
+        .contact-form {
+            width: 90%;
+            @include makeColFlexStart;
+            align-items: flex-start;
+            position: relative;
+
+
+            .star-floater {
+                &:first-of-type {
+                    top: unset;
+                    bottom: 20%;
+                    left: unset;
+                    right: 0%;
+                    transform: translateX(20%);
+
+                }
+                &:last-of-type {
+                    top: unset;
+                    bottom: 10%;
+                    transform: scale(.8);
+
+                }
+            }
+            input {
+                display: block;
+                height: 4rem;
+                border-radius: .3rem;
+                border: .15rem solid var(--text-color);
+                padding-left: 2rem;
+                background-color: var(--text-color-trans);
+                color: var(--text-color);
+                &::placeholder {
+                    color: var(--text-color);
+                    font-family: montserrat_regular;
+                    font-size: 1.5rem;
+                    text-transform: capitalize;
+                }
+                &.message-field {
+                    height: 20rem !important;
+                    &::placeholder {
+                        transform: translateY(-300%);
+                    }
+                }
+
+                &[type="email"], &[type="text"], &[type="tel"] {
+                    margin-bottom: 2rem;
+                    width: 85%;
+                }
+                &[type="submit"] {
+                    
+                    @include makeCta;
+                    align-self: center !important;
+                    margin: unset;
+                    margin: 0 auto;
+                    margin-left: 25% !important;
+                    margin-top: 1rem;
+                    margin-bottom: 5rem;
+                    @include makeColFlexCenter;
+                    transform: scale(.8);
+                    font-family: montserrat_regular;
+                    // @include makeAbsoluteBottomDiv;
+                    
+                }
+            }
+        }
+
+    }
+    .contact-form-bottom-text {
+        width: max-content;
+        font-size: 1.5rem;
+        width: 90%;
+        color: var(--accent-color-fade);
+        text-align: center;
+        @media screen and (min-width: 992px) {
+            display: none;
+            &+.contact-social-icons {
+                display: none;
+            }
+        }
+    }
+    .contact-social-icons {
+        width: 20rem;
+        margin: 0 auto;
+        @include makeRowFlexStart;
+        margin-bottom: 10rem;
+        li {
+            margin-right: 1.5rem;
+        }
+    }
+
+}

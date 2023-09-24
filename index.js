@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const register_link = "https://hazeldaniel.github.io/get-linked-ai-template-register/"
 	const register_button = document.querySelector(".header-cta button");
 
-	// const heroMotto = document.querySelector("section.hero").querySelector("h3");
 	const baseUri = 'https://backend.getlinked.ai/';
 	const form = document.querySelector('.contact-form');
 	let toggleCount = 0;
@@ -31,9 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Intersection Observer configuration
 		const observerOptions = {
-			root: null, // Use the viewport as the root
-			rootMargin: '0px', // No margin
-			threshold: 0.5, // 50% of the element must be in view
+			root: null,
+			rootMargin: '0px',
 		};
 
 		// Create an Intersection Observer
@@ -65,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	const handleRenderLoader = function() {
+	const handleLoaderRender = function() {
 
 	}
 
@@ -79,12 +77,33 @@ document.addEventListener("DOMContentLoaded", function () {
 			else
 			{
 				headerMenu.style.visibility = "hidden";
-
 			}
 		})
 	}
 
 
+	const handleToastRender = function(message) {
+		const toast = document.querySelector('.toast');
+
+
+		if (toast) {
+			const pElement = toast.querySelector('p');
+			const cancelButton = toast.querySelector('.cancel');
+
+			if (pElement)
+				pElement.textContent = message;
+			if (cancelButton)
+			{
+				cancelButton.addEventListener('click', function(){
+					toast.classList.remove('slide-in');
+				})
+			}
+			toast.classList.add('slide-in');
+		}
+		setTimeout(()=>{
+			toast.classList.remove('slide-in');
+		}, 2200);
+	};
 
 	const handleContactSubmit = function () {
     form.addEventListener('submit', function (event) {
@@ -111,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				!payload["first_name"] ||
 				!payload["phone_number"] ||
 				!payload["message"]) {
-				alert("fields not correctly filled");
+				handleToastRender("fields not correctly filled");
 				return;
 			}
 
@@ -125,13 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(response => response.json())
         .then(data => {
-					console.log(data);
-					//handle success
+					handleToastRender("Form successfully submitted and will be reviewed!");
         })
         .catch(error => {
-          // Handle errors (e.g., show an error message)
           console.error('Error:', error);
-					alert("something went wrong");
+					handleToastRender("something went wrong. please try again!");
         });
 			form.reset();
     });
